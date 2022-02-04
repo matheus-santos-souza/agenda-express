@@ -1,17 +1,7 @@
-# express-template
-Template de express pronto para desenvolvimento
+# Projeto Agenda 
+Ferramentas usadas: Express, mongoDB, EJS, bootstrap e webpack
 
-#Funcionalidades prontas: 
-   nodemon,
-   express,
-   express-session,
-   connect-mongo (Conexão BD),
-   mongoose (Model),
-   CSURF (Segurança),
-   helmet (Segurança),
-   dotenv,
-   ejs ,
-   regenerator-runtime
-   style-loader
-   babel
-   webpack
+#Funcionalidades: 
+
+CRUD contatos + login/logout
+   
