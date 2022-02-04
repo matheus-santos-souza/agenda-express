@@ -1,0 +1,75 @@
+
+<%- include('includes/head') %>
+
+<%- include('includes/navbar') %>
+
+<div class="container">
+   <div class="row">
+      <div class="col-lg-2"></div>
+
+      
+         <div class="col-lg-8 my-3">
+            <% if (!user) { %>
+
+            <h1 class="text-center">Criar conta ou Entrar</h1>
+            <p class="text-center lead">Crie sua conta ou faça login</p>
+
+            <%- include('./includes/messages') %>
+
+            <div class="row my-5">
+               <div class="col-lg bg-light">
+                  <h4>Faça seu cadastro</h4>
+                  <form action="/login/register" method="POST" class="my-5">
+                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                     <div class="form-group">
+                       <label for="exampleInputEmail1">Email</label>
+                       <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Digite seu Email">
+                     </div>
+                     <div class="form-group">
+                       <label for="exampleInputPassword1">Senha</label>
+                       <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Digite sua senha">
+                     </div>
+                     
+                     <button type="submit" class="btn btn-primary">Cadastrar</button>
+                   </form>
+               </div>
+
+               <div class="col-lg">
+                  <h4>Faça seu login</h4>
+                  <form action="/login/logged" method="POST" class="my-5">
+                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                     <div class="form-group">
+                       <label for="exampleInputEmail1">Email</label>
+                       <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Digite seu Email">
+                     </div>
+                     <div class="form-group">
+                       <label for="exampleInputPassword1">Senha</label>
+                       <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Digite sua senha">
+                     </div>
+                     
+                     <button type="submit" class="btn btn-primary">Entrar</button>
+                   </form>
+                  
+               </div>
+               <% } else { %>
+                  <h1 class="text-center">Você já está logado!</h1>
+                  <div class="d-flex justify-content-center my-5">
+                     <h4 class="text-center mr-3 my-2">Deseja sair?</h4>
+                     <ul class="navbar-nav d-flex flex-row">
+                        <li class="nav-item active">
+                           <a class="nav-link" href="/login/logout"><button class="btn btn-danger mr-3" href="/login/logout">Sim</button><span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                           <a class="nav-link" href="/"><button class="btn btn-primary mr-3" href="/">Não</button><span class="sr-only">(current)</span></a>
+                        </li>
+                     </ul>
+                  </div>
+               <% } %>
+               
+            </div>
+            
+         </div>
+      <div class="col-lg-2"></div>
+</div>
+
+<%- include('includes/footer') %>

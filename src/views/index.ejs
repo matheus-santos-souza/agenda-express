@@ -1,0 +1,81 @@
+
+<%- include('includes/head') %>
+
+   <%- include('includes/navbar') %>
+
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-2"></div>
+
+         <div class="col-lg-8 my-3">
+            <h1 class="text-center">Agenda</h1>
+
+         <% if (user) { %>   
+
+            <% if (!contatos.length) { %>
+
+               <p class="text-center lead">Você ainda não tem contados cadastrados!</p>
+               <div class="d-flex justify-content-center">
+                  <button onclick="window.location.href='/contato'" type="reset" class="btn btn-primary mr-3" href="/contato">Adicionar meu primeiro contato</button>
+               </div>
+
+               <% } else { %>
+
+                  <p class="text-center lead">Seus contatos estão logo abaixo:</p>
+
+                  <%- include('../views/includes/messages') %>
+
+               <% } %> 
+
+                  <div class="d-flex justify-content-center my-4">
+                     <form action="/search" method="GET" class="form-inline">
+                       <input style="width: 30em;" class="form-control mr-sm-2" type="search" placeholder="Pesquisar contato" name="nameSearch">
+                       <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Pesquisar</button>
+                     </form>
+                  </div>
+               <div class="table-responsive-lg">
+                  <table class="table table-striped my-3">
+                     <thead>
+                        <tr>
+                          <th scope="col">Nome</th>
+                          <th scope="col">Sobrenome</th>
+                          <th scope="col">Telefone</th>
+                          <th scope="col">E-mail</th>
+                        </tr>
+                      </thead>
+
+                  <% if (contatos[0] === true) { %>
+                     <p class="text-center lead text-danger">Nenhum contato foi encontrado.</p>
+                  <% } else { %>
+                      <tbody>
+
+                  <% contatos.forEach((contato) => { %>
+                     <tr>
+                        <td><%= contato.nome %></td>
+                        <td><%= contato.sobrenome %></td>
+                        <td><%= contato.telefone %></td>
+                        <td><%= contato.email %></td>
+                        <td><a class="text-success" href="/contato/<%= contato._id %>">Editar</a></td>
+                        <td><a class="text-danger" href="/contato/delete/<%= contato._id %>">Excluir</a></td>
+                     </tr>
+
+                  <% }) %>
+                     </tbody>
+
+                  <% } %>
+                  </table>
+               </div>
+
+               <% } else { %>
+                  <p class="text-center lead">Você precisa fazer login para adicionar contatos!</p>
+                  <div class="d-flex justify-content-center">
+                     <button onclick="window.location.href='/login'" type="reset" class="btn btn-primary mr-3" href="/contato">Crie uma conta ou faça login</button>
+                  </div>
+               <% } %>
+
+               </div>
+            </div>
+         <div class="col-lg-2"></div>
+   </div>
+
+<%- include('includes/footer') %>
